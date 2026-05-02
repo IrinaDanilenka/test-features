@@ -1,17 +1,4 @@
-:root {
-  --app-bg: #f0f2f8;
-  --app-surface: #ffffff;
-  --app-text: #141722;
-  --app-text-muted: #5b6478;
-  --app-accent: #3657e8;
-  --app-accent-hover: #2847d4;
-  --app-accent-soft: rgba(54, 87, 232, 0.1);
-  --app-border: rgba(20, 23, 34, 0.08);
-  --app-card-shadow: 0 1px 2px rgba(20, 23, 34, 0.04), 0 8px 24px rgba(20, 23, 34, 0.06);
-  --app-radius-lg: 20px;
-  --app-radius-md: 14px;
-  --app-max-width: 1120px;
-}
+/* Токены темы заданы в index.css (:root и html[data-theme="dark"]) */
 
 .app {
   min-height: 100vh;
@@ -32,7 +19,7 @@
 .app__header {
   padding: 1.25rem clamp(1rem, 4vw, 2rem);
   border-bottom: 1px solid var(--app-border);
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--app-header-bg);
   backdrop-filter: blur(12px);
 }
 
@@ -215,10 +202,8 @@
 
 .lab-card:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0 4px 8px rgba(20, 23, 34, 0.06),
-    0 16px 40px rgba(20, 23, 34, 0.1);
-  border-color: rgba(54, 87, 232, 0.22);
+  box-shadow: var(--app-card-hover-shadow);
+  border-color: var(--app-card-hover-border);
 }
 
 .lab-card:focus-visible {
@@ -278,7 +263,7 @@
   margin-top: auto;
   padding: 1.25rem clamp(1rem, 4vw, 2rem);
   border-top: 1px solid var(--app-border);
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--app-footer-bg);
 }
 
 .app__footer-inner {

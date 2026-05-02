@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { List, type RowComponentProps } from 'react-window'
 import './LongListPage.css'
 import { useState } from 'react'
@@ -80,6 +81,12 @@ function LongListPage() {
 
   return (
     <div className="long-list-page">
+      <header className="long-list-page__bar">
+        <Link className="long-list-page__back" to="/">
+          ← На главную
+        </Link>
+      </header>
+
       <header className="long-list-page__hero" aria-labelledby="long-list-title">
         <p className="long-list-page__eyebrow">Long List Playground</p>
         <h1 id="long-list-title" className="long-list-page__title">

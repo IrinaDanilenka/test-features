@@ -1,17 +1,45 @@
 .long-list-page {
-  --list-bg: #f0f2f8;
-  --list-surface: #ffffff;
-  --list-text: #141722;
-  --list-text-muted: #5b6478;
-  --list-accent: #3657e8;
-  --list-border: rgba(20, 23, 34, 0.08);
-  --list-shadow: 0 1px 2px rgba(20, 23, 34, 0.04), 0 8px 24px rgba(20, 23, 34, 0.06);
+  --list-bg: var(--app-bg);
+  --list-surface: var(--app-surface);
+  --list-text: var(--app-text);
+  --list-text-muted: var(--app-text-muted);
+  --list-accent: var(--app-accent);
+  --list-border: var(--app-border);
+  --list-shadow: var(--app-card-shadow);
+  --list-panel-head-bg: var(--app-sticky-header-bg);
+  --list-id-chip-bg: var(--app-chip-bg);
 
   min-height: 100vh;
   padding: clamp(1rem, 3vw, 2rem);
   background: radial-gradient(ellipse 110% 70% at 100% 0%, rgba(54, 87, 232, 0.12), transparent 60%),
     var(--list-bg);
   color: var(--list-text);
+}
+
+.long-list-page__bar {
+  width: min(960px, 100%);
+  margin: 0 auto 1rem;
+}
+
+.long-list-page__back {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--list-accent);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.long-list-page__back:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}
+
+.long-list-page__back:focus-visible {
+  outline: 2px solid var(--list-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .long-list-page__hero,
@@ -64,7 +92,7 @@
   gap: 0.75rem;
   padding: 0.9rem 1rem;
   border-bottom: 1px solid var(--list-border);
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--list-panel-head-bg);
   backdrop-filter: blur(10px);
 }
 
@@ -107,7 +135,7 @@
   font-size: 0.84rem;
   font-weight: 700;
   color: var(--list-accent);
-  background: rgba(54, 87, 232, 0.08);
+  background: var(--list-id-chip-bg);
 }
 
 .list-card__title {

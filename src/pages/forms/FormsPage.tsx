@@ -5,6 +5,12 @@ import './FormsPage.css'
 function FormsPage() {
   return (
     <div className="forms-page">
+      <header className="forms-page__bar">
+        <Link className="forms-page__back" to="/">
+          ← На главную
+        </Link>
+      </header>
+
       <header className="forms-page__hero" aria-labelledby="forms-title">
         <p className="forms-page__eyebrow">Forms playground</p>
         <h1 id="forms-title" className="forms-page__title">

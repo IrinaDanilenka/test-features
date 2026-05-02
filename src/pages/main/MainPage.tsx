@@ -81,7 +81,6 @@ function MainPage() {
               <p className="app__subtitle-small">Тренировка техник и новых библиотек</p>
             </div>
           </a>
-          <span className="app__badge">Обучение</span>
         </div>
       </header>
 

@@ -4,6 +4,113 @@
   box-sizing: border-box;
 }
 
+/* Глобальные токены темы: светлая по умолчанию; для тёмной задайте на <html> data-theme="dark" */
+:root {
+  color-scheme: light;
+  --app-bg: #f0f2f8;
+  --app-surface: #ffffff;
+  --app-text: #141722;
+  --app-text-muted: #5b6478;
+  --app-accent: #3657e8;
+  --app-accent-hover: #2847d4;
+  --app-accent-soft: rgba(54, 87, 232, 0.1);
+  --app-border: rgba(20, 23, 34, 0.08);
+  --app-card-shadow: 0 1px 2px rgba(20, 23, 34, 0.04), 0 8px 24px rgba(20, 23, 34, 0.06);
+  --app-radius-lg: 20px;
+  --app-radius-md: 14px;
+  --app-max-width: 1120px;
+  --app-header-bg: rgba(255, 255, 255, 0.72);
+  --app-footer-bg: rgba(255, 255, 255, 0.55);
+  --theme-toggle-bg: rgba(255, 255, 255, 0.92);
+  --theme-toggle-fg: #141722;
+  --theme-toggle-border: rgba(20, 23, 34, 0.12);
+  --theme-toggle-border-hover: rgba(54, 87, 232, 0.35);
+  --theme-toggle-shadow: 0 2px 12px rgba(20, 23, 34, 0.08);
+  --theme-toggle-shadow-hover: 0 4px 16px rgba(20, 23, 34, 0.12);
+  --theme-toggle-segment-bg: rgba(0, 0, 0, 0.06);
+  --theme-toggle-active-chip-bg: rgba(54, 87, 232, 0.16);
+
+  /* Поля, формы, панели */
+  --app-control-border: rgba(20, 23, 34, 0.12);
+  --app-input-bg: #fafbfd;
+  --app-divider: rgba(20, 23, 34, 0.06);
+  --app-focus-ring: 0 0 0 3px rgba(54, 87, 232, 0.18);
+  --app-focus-ring-error: 0 0 0 3px rgba(196, 30, 58, 0.2);
+  --app-input-hover-border: rgba(54, 87, 232, 0.35);
+  --app-checks-bg: rgba(54, 87, 232, 0.04);
+  --app-checks-border: rgba(54, 87, 232, 0.12);
+  --app-error: #c41e3a;
+  --app-error-bg: rgba(196, 30, 58, 0.08);
+  --app-error-border: rgba(196, 30, 58, 0.25);
+  --app-invalid-field-bg: #fffefc;
+  --app-panel-shadow:
+    0 1px 2px rgba(20, 23, 34, 0.05),
+    0 12px 40px rgba(54, 87, 232, 0.08);
+  --app-sticky-header-bg: rgba(255, 255, 255, 0.9);
+  --app-chip-bg: rgba(54, 87, 232, 0.08);
+  --app-card-hover-shadow:
+    0 4px 8px rgba(20, 23, 34, 0.06),
+    0 16px 40px rgba(20, 23, 34, 0.1);
+  --app-card-hover-border: rgba(54, 87, 232, 0.22);
+  --app-submit-shadow: 0 2px 8px rgba(54, 87, 232, 0.35);
+  --app-submit-shadow-hover: 0 4px 14px rgba(54, 87, 232, 0.45);
+  --app-submit-focus-shadow:
+    0 0 0 3px rgba(54, 87, 232, 0.35),
+    0 4px 14px rgba(54, 87, 232, 0.45);
+  --app-accent-gradient-end: #5b7cfa;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --app-bg: #12141c;
+  --app-surface: #1a1f2e;
+  --app-text: #e8eaf0;
+  --app-text-muted: #9aa3b2;
+  --app-accent: #7c9cff;
+  --app-accent-hover: #a8bcff;
+  --app-accent-soft: rgba(124, 156, 255, 0.18);
+  --app-border: rgba(255, 255, 255, 0.1);
+  --app-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 28px rgba(0, 0, 0, 0.45);
+  --app-header-bg: rgba(22, 26, 36, 0.92);
+  --app-footer-bg: rgba(22, 26, 36, 0.85);
+  --theme-toggle-bg: rgba(30, 34, 46, 0.95);
+  --theme-toggle-fg: #e8eaf0;
+  --theme-toggle-border: rgba(255, 255, 255, 0.12);
+  --theme-toggle-border-hover: rgba(124, 156, 255, 0.45);
+  --theme-toggle-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  --theme-toggle-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --theme-toggle-segment-bg: rgba(255, 255, 255, 0.08);
+  --theme-toggle-active-chip-bg: rgba(124, 156, 255, 0.22);
+
+  --app-control-border: rgba(255, 255, 255, 0.12);
+  --app-input-bg: #1e2433;
+  --app-divider: rgba(255, 255, 255, 0.08);
+  --app-focus-ring: 0 0 0 3px rgba(124, 156, 255, 0.35);
+  --app-focus-ring-error: 0 0 0 3px rgba(255, 120, 140, 0.35);
+  --app-input-hover-border: rgba(124, 156, 255, 0.45);
+  --app-checks-bg: rgba(124, 156, 255, 0.08);
+  --app-checks-border: rgba(124, 156, 255, 0.22);
+  --app-error: #ff8a9e;
+  --app-error-bg: rgba(255, 100, 130, 0.12);
+  --app-error-border: rgba(255, 140, 160, 0.35);
+  --app-invalid-field-bg: rgba(255, 120, 140, 0.12);
+  --app-panel-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.35),
+    0 12px 40px rgba(0, 0, 0, 0.35);
+  --app-sticky-header-bg: rgba(22, 26, 38, 0.92);
+  --app-chip-bg: rgba(124, 156, 255, 0.16);
+  --app-card-hover-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.35),
+    0 16px 40px rgba(0, 0, 0, 0.45);
+  --app-card-hover-border: rgba(124, 156, 255, 0.35);
+  --app-submit-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --app-submit-shadow-hover: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --app-submit-focus-shadow:
+    0 0 0 3px rgba(124, 156, 255, 0.45),
+    0 4px 14px rgba(0, 0, 0, 0.45);
+  --app-accent-gradient-end: #8fa8ff;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

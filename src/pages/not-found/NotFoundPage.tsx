@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './NotFoundPage.css'
 
 function NotFoundPage() {
@@ -12,9 +13,9 @@ function NotFoundPage() {
           Возможно, ссылка устарела или была введена с ошибкой. Вернитесь на главную и попробуйте
           снова.
         </p>
-        <a className="not-found-page__link" href="/">
+        <Link className="not-found-page__link" to="/">
           На главную
-        </a>
+        </Link>
       </div>
     </main>
   )

@@ -1,18 +1,17 @@
 .forms-formik {
-  --fk-bg: #eef1f9;
-  --fk-text: #141722;
-  --fk-muted: #5b6478;
-  --fk-accent: #3657e8;
-  --fk-accent-hover: #2847d4;
-  --fk-border: rgba(20, 23, 34, 0.12);
-  --fk-input-bg: #fafbfd;
-  --fk-surface: #ffffff;
-  --fk-error: #c41e3a;
-  --fk-error-bg: rgba(196, 30, 58, 0.08);
-  --fk-error-border: rgba(196, 30, 58, 0.25);
-  --fk-shadow:
-    0 1px 2px rgba(20, 23, 34, 0.05),
-    0 12px 40px rgba(54, 87, 232, 0.08);
+  --fk-bg: var(--app-bg);
+  --fk-text: var(--app-text);
+  --fk-muted: var(--app-text-muted);
+  --fk-accent: var(--app-accent);
+  --fk-accent-hover: var(--app-accent-hover);
+  --fk-border: var(--app-control-border);
+  --fk-input-bg: var(--app-input-bg);
+  --fk-surface: var(--app-surface);
+  --fk-invalid-field-bg: var(--app-invalid-field-bg);
+  --fk-error: var(--app-error);
+  --fk-error-bg: var(--app-error-bg);
+  --fk-error-border: var(--app-error-border);
+  --fk-shadow: var(--app-panel-shadow);
 
   min-height: 100vh;
   padding: clamp(1rem, 3vw, 1.75rem);
@@ -71,7 +70,7 @@
 .forms-formik__title {
   margin: 0 0 1.5rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid rgba(20, 23, 34, 0.06);
+  border-bottom: 1px solid var(--app-divider);
   font-size: clamp(1.35rem, 3vw, 1.85rem);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -119,27 +118,27 @@
 }
 
 .forms-formik__input:hover {
-  border-color: rgba(54, 87, 232, 0.35);
-  background: #fff;
+  border-color: var(--app-input-hover-border);
+  background: var(--fk-surface);
 }
 
 .forms-formik__input:focus {
   outline: none;
   border-color: var(--fk-accent);
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(54, 87, 232, 0.18);
+  background: var(--fk-surface);
+  box-shadow: var(--app-focus-ring);
 }
 
 .forms-formik__input--invalid,
 .forms-formik__input[aria-invalid='true'] {
   border-color: var(--fk-error);
-  background: #fffefc;
+  background: var(--fk-invalid-field-bg);
 }
 
 .forms-formik__input--invalid:focus,
 .forms-formik__input[aria-invalid='true']:focus {
   border-color: var(--fk-error);
-  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+  box-shadow: var(--app-focus-ring-error);
 }
 
 .forms-formik__error {
@@ -166,8 +165,8 @@
   margin-bottom: 0.25rem;
   padding: 0.85rem 1rem;
   border-radius: 12px;
-  background: rgba(54, 87, 232, 0.04);
-  border: 1px solid rgba(54, 87, 232, 0.12);
+  background: var(--app-checks-bg);
+  border: 1px solid var(--app-checks-border);
 }
 
 .forms-formik__check {
@@ -210,11 +209,11 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #fff;
-  background: linear-gradient(165deg, var(--fk-accent), #5b7cfa);
+  background: linear-gradient(165deg, var(--fk-accent), var(--app-accent-gradient-end));
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(54, 87, 232, 0.35);
+  box-shadow: var(--app-submit-shadow);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease,
@@ -223,7 +222,7 @@
 
 .forms-formik__submit:hover:not(:disabled) {
   filter: brightness(1.05);
-  box-shadow: 0 4px 14px rgba(54, 87, 232, 0.45);
+  box-shadow: var(--app-submit-shadow-hover);
 }
 
 .forms-formik__submit:active:not(:disabled) {
@@ -232,9 +231,7 @@
 
 .forms-formik__submit:focus-visible {
   outline: none;
-  box-shadow:
-    0 0 0 3px rgba(54, 87, 232, 0.35),
-    0 4px 14px rgba(54, 87, 232, 0.45);
+  box-shadow: var(--app-submit-focus-shadow);
 }
 
 .forms-formik__submit:disabled {

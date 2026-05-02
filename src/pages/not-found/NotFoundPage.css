@@ -1,12 +1,12 @@
 .not-found-page {
-  --nf-bg: #f0f2f8;
-  --nf-surface: #ffffff;
-  --nf-text: #141722;
-  --nf-text-muted: #5b6478;
-  --nf-accent: #3657e8;
-  --nf-accent-hover: #2847d4;
-  --nf-border: rgba(20, 23, 34, 0.08);
-  --nf-shadow: 0 1px 2px rgba(20, 23, 34, 0.04), 0 8px 24px rgba(20, 23, 34, 0.06);
+  --nf-bg: var(--app-bg);
+  --nf-surface: var(--app-surface);
+  --nf-text: var(--app-text);
+  --nf-text-muted: var(--app-text-muted);
+  --nf-accent: var(--app-accent);
+  --nf-accent-hover: var(--app-accent-hover);
+  --nf-border: var(--app-border);
+  --nf-shadow: var(--app-card-shadow);
 
   min-height: 100vh;
   display: grid;

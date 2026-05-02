@@ -1,18 +1,17 @@
 .forms-rhf {
-  --rhf-bg: #eef1f9;
-  --rhf-text: #141722;
-  --rhf-muted: #5b6478;
-  --rhf-accent: #3657e8;
-  --rhf-accent-hover: #2847d4;
-  --rhf-border: rgba(20, 23, 34, 0.12);
-  --rhf-input-bg: #fafbfd;
-  --rhf-surface: #ffffff;
-  --rhf-error: #c41e3a;
-  --rhf-error-bg: rgba(196, 30, 58, 0.08);
-  --rhf-error-border: rgba(196, 30, 58, 0.25);
-  --rhf-shadow:
-    0 1px 2px rgba(20, 23, 34, 0.05),
-    0 12px 40px rgba(54, 87, 232, 0.08);
+  --rhf-bg: var(--app-bg);
+  --rhf-text: var(--app-text);
+  --rhf-muted: var(--app-text-muted);
+  --rhf-accent: var(--app-accent);
+  --rhf-accent-hover: var(--app-accent-hover);
+  --rhf-border: var(--app-control-border);
+  --rhf-input-bg: var(--app-input-bg);
+  --rhf-surface: var(--app-surface);
+  --rhf-invalid-field-bg: var(--app-invalid-field-bg);
+  --rhf-error: var(--app-error);
+  --rhf-error-bg: var(--app-error-bg);
+  --rhf-error-border: var(--app-error-border);
+  --rhf-shadow: var(--app-panel-shadow);
 
   min-height: 100vh;
   padding: clamp(1rem, 3vw, 1.75rem);
@@ -71,7 +70,7 @@
 .forms-rhf__title {
   margin: 0 0 1.5rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid rgba(20, 23, 34, 0.06);
+  border-bottom: 1px solid var(--app-divider);
   font-size: clamp(1.35rem, 3vw, 1.85rem);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -119,27 +118,27 @@
 }
 
 .forms-rhf__input:hover {
-  border-color: rgba(54, 87, 232, 0.35);
-  background: #fff;
+  border-color: var(--app-input-hover-border);
+  background: var(--rhf-surface);
 }
 
 .forms-rhf__input:focus {
   outline: none;
   border-color: var(--rhf-accent);
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(54, 87, 232, 0.18);
+  background: var(--rhf-surface);
+  box-shadow: var(--app-focus-ring);
 }
 
 .forms-rhf__input--invalid,
 .forms-rhf__input[aria-invalid='true'] {
   border-color: var(--rhf-error);
-  background: #fffefc;
+  background: var(--rhf-invalid-field-bg);
 }
 
 .forms-rhf__input--invalid:focus,
 .forms-rhf__input[aria-invalid='true']:focus {
   border-color: var(--rhf-error);
-  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+  box-shadow: var(--app-focus-ring-error);
 }
 
 .forms-rhf__error {
@@ -162,8 +161,8 @@
   margin-bottom: 0.25rem;
   padding: 0.85rem 1rem;
   border-radius: 12px;
-  background: rgba(54, 87, 232, 0.04);
-  border: 1px solid rgba(54, 87, 232, 0.12);
+  background: var(--app-checks-bg);
+  border: 1px solid var(--app-checks-border);
 }
 
 .forms-rhf__check {
@@ -206,11 +205,11 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #fff;
-  background: linear-gradient(165deg, var(--rhf-accent), #5b7cfa);
+  background: linear-gradient(165deg, var(--rhf-accent), var(--app-accent-gradient-end));
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(54, 87, 232, 0.35);
+  box-shadow: var(--app-submit-shadow);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease,
@@ -219,7 +218,7 @@
 
 .forms-rhf__submit:hover {
   filter: brightness(1.05);
-  box-shadow: 0 4px 14px rgba(54, 87, 232, 0.45);
+  box-shadow: var(--app-submit-shadow-hover);
 }
 
 .forms-rhf__submit:active {
@@ -228,7 +227,5 @@
 
 .forms-rhf__submit:focus-visible {
   outline: none;
-  box-shadow:
-    0 0 0 3px rgba(54, 87, 232, 0.35),
-    0 4px 14px rgba(54, 87, 232, 0.45);
+  box-shadow: var(--app-submit-focus-shadow);
 }

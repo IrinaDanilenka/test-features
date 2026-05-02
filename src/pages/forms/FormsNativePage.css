@@ -1,18 +1,17 @@
 .forms-native {
-  --nat-bg: #eef1f9;
-  --nat-text: #141722;
-  --nat-muted: #5b6478;
-  --nat-accent: #3657e8;
-  --nat-accent-hover: #2847d4;
-  --nat-border: rgba(20, 23, 34, 0.12);
-  --nat-input-bg: #fafbfd;
-  --nat-surface: #ffffff;
-  --nat-error: #c41e3a;
-  --nat-error-bg: rgba(196, 30, 58, 0.08);
-  --nat-error-border: rgba(196, 30, 58, 0.25);
-  --nat-shadow:
-    0 1px 2px rgba(20, 23, 34, 0.05),
-    0 12px 40px rgba(54, 87, 232, 0.08);
+  --nat-bg: var(--app-bg);
+  --nat-text: var(--app-text);
+  --nat-muted: var(--app-text-muted);
+  --nat-accent: var(--app-accent);
+  --nat-accent-hover: var(--app-accent-hover);
+  --nat-border: var(--app-control-border);
+  --nat-input-bg: var(--app-input-bg);
+  --nat-surface: var(--app-surface);
+  --nat-invalid-field-bg: var(--app-invalid-field-bg);
+  --nat-error: var(--app-error);
+  --nat-error-bg: var(--app-error-bg);
+  --nat-error-border: var(--app-error-border);
+  --nat-shadow: var(--app-panel-shadow);
 
   min-height: 100vh;
   padding: clamp(1rem, 3vw, 1.75rem);
@@ -71,7 +70,7 @@
 .forms-native__title {
   margin: 0 0 1.5rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid rgba(20, 23, 34, 0.06);
+  border-bottom: 1px solid var(--app-divider);
   font-size: clamp(1.35rem, 3vw, 1.85rem);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -119,27 +118,27 @@
 }
 
 .forms-native__input:hover {
-  border-color: rgba(54, 87, 232, 0.35);
-  background: #fff;
+  border-color: var(--app-input-hover-border);
+  background: var(--nat-surface);
 }
 
 .forms-native__input:focus {
   outline: none;
   border-color: var(--nat-accent);
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(54, 87, 232, 0.18);
+  background: var(--nat-surface);
+  box-shadow: var(--app-focus-ring);
 }
 
 .forms-native__input--invalid,
 .forms-native__input[aria-invalid='true'] {
   border-color: var(--nat-error);
-  background: #fffefc;
+  background: var(--nat-invalid-field-bg);
 }
 
 .forms-native__input--invalid:focus,
 .forms-native__input[aria-invalid='true']:focus {
   border-color: var(--nat-error);
-  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+  box-shadow: var(--app-focus-ring-error);
 }
 
 .forms-native__error {
@@ -162,8 +161,8 @@
   margin-bottom: 0.25rem;
   padding: 0.85rem 1rem;
   border-radius: 12px;
-  background: rgba(54, 87, 232, 0.04);
-  border: 1px solid rgba(54, 87, 232, 0.12);
+  background: var(--app-checks-bg);
+  border: 1px solid var(--app-checks-border);
 }
 
 .forms-native__check {
@@ -207,11 +206,11 @@
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #fff;
-  background: linear-gradient(165deg, var(--nat-accent), #5b7cfa);
+  background: linear-gradient(165deg, var(--nat-accent), var(--app-accent-gradient-end));
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(54, 87, 232, 0.35);
+  box-shadow: var(--app-submit-shadow);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease,
@@ -220,7 +219,7 @@
 
 .forms-native__submit:hover {
   filter: brightness(1.05);
-  box-shadow: 0 4px 14px rgba(54, 87, 232, 0.45);
+  box-shadow: var(--app-submit-shadow-hover);
 }
 
 .forms-native__submit:active {
@@ -229,7 +228,5 @@
 
 .forms-native__submit:focus-visible {
   outline: none;
-  box-shadow:
-    0 0 0 3px rgba(54, 87, 232, 0.35),
-    0 4px 14px rgba(54, 87, 232, 0.45);
+  box-shadow: var(--app-submit-focus-shadow);
 }

@@ -1,17 +1,43 @@
 .forms-page {
-  --fp-bg: #f0f2f8;
-  --fp-surface: #ffffff;
-  --fp-text: #141722;
-  --fp-muted: #5b6478;
-  --fp-accent: #3657e8;
-  --fp-border: rgba(20, 23, 34, 0.08);
-  --fp-shadow: 0 1px 2px rgba(20, 23, 34, 0.04), 0 8px 24px rgba(20, 23, 34, 0.06);
+  --fp-bg: var(--app-bg);
+  --fp-surface: var(--app-surface);
+  --fp-text: var(--app-text);
+  --fp-muted: var(--app-text-muted);
+  --fp-accent: var(--app-accent);
+  --fp-border: var(--app-border);
+  --fp-shadow: var(--app-card-shadow);
 
   min-height: 100vh;
   padding: clamp(1.25rem, 4vw, 2rem);
   background: radial-gradient(ellipse 100% 70% at 100% 0%, rgba(54, 87, 232, 0.12), transparent 55%),
     var(--fp-bg);
   color: var(--fp-text);
+}
+
+.forms-page__bar {
+  width: min(920px, 100%);
+  margin: 0 auto 1rem;
+}
+
+.forms-page__back {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fp-accent);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.forms-page__back:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}
+
+.forms-page__back:focus-visible {
+  outline: 2px solid var(--fp-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .forms-page__hero {
@@ -72,10 +98,8 @@
 
 .forms-slot--link:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0 4px 8px rgba(20, 23, 34, 0.06),
-    0 16px 40px rgba(20, 23, 34, 0.1);
-  border-color: rgba(54, 87, 232, 0.22);
+  box-shadow: var(--app-card-hover-shadow);
+  border-color: var(--app-card-hover-border);
 }
 
 .forms-slot--link:focus-visible {

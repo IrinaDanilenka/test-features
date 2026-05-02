@@ -1,0 +1,106 @@
+.theme-toggle {
+  position: fixed;
+  top: clamp(0.75rem, 3vw, 1.25rem);
+  right: clamp(0.75rem, 3vw, 1.25rem);
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.75rem 0.45rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--theme-toggle-border);
+  background: var(--theme-toggle-bg);
+  color: var(--theme-toggle-fg);
+  box-shadow: var(--theme-toggle-shadow);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--theme-toggle-border-hover);
+  box-shadow: var(--theme-toggle-shadow-hover);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--app-accent);
+  outline-offset: 3px;
+}
+
+.theme-toggle:active {
+  transform: scale(0.98);
+}
+
+/* Две иконки в «сегменте»: подложка + активная сторона ярче */
+.theme-toggle__icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--theme-toggle-segment-bg);
+}
+
+.theme-toggle__icon-slot {
+  display: grid;
+  place-items: center;
+  padding: 4px 6px;
+  border-radius: 8px;
+  line-height: 0;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.theme-toggle__sun,
+.theme-toggle__moon {
+  display: block;
+}
+
+/* Светлая тема активна */
+html[data-theme='light'] .theme-toggle__icon-slot--sun {
+  background: var(--theme-toggle-active-chip-bg);
+  color: var(--app-accent);
+}
+
+html[data-theme='light'] .theme-toggle__icon-slot--moon {
+  opacity: 0.38;
+  color: var(--theme-toggle-fg);
+}
+
+/* Тёмная тема активна */
+html[data-theme='dark'] .theme-toggle__icon-slot--moon {
+  background: var(--theme-toggle-active-chip-bg);
+  color: var(--app-accent);
+}
+
+html[data-theme='dark'] .theme-toggle__icon-slot--sun {
+  opacity: 0.38;
+  color: var(--theme-toggle-fg);
+}
+
+/* Подпись: видна только строка с текущей темой */
+.theme-toggle__label {
+  min-width: 4.5rem;
+  letter-spacing: 0.02em;
+}
+
+.theme-toggle__mode {
+  display: none;
+}
+
+html[data-theme='light'] .theme-toggle__mode--light {
+  display: inline;
+  color: var(--theme-toggle-fg);
+}
+
+html[data-theme='dark'] .theme-toggle__mode--dark {
+  display: inline;
+  color: var(--theme-toggle-fg);
+}
