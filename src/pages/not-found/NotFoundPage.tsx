@@ -1,20 +1,20 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import './NotFoundPage.css'
 
 function NotFoundPage() {
+  const { t } = useTranslation()
+
   return (
     <main className="not-found-page" aria-labelledby="not-found-title">
       <div className="not-found-page__card">
         <p className="not-found-page__code">404</p>
         <h1 id="not-found-title" className="not-found-page__title">
-          Страница не найдена
+          {t('notFound.title')}
         </h1>
-        <p className="not-found-page__text">
-          Возможно, ссылка устарела или была введена с ошибкой. Вернитесь на главную и попробуйте
-          снова.
-        </p>
+        <p className="not-found-page__text">{t('notFound.text')}</p>
         <Link className="not-found-page__link" to="/">
-          На главную
+          {t('notFound.backHome')}
         </Link>
       </div>
     </main>

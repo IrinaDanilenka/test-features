@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { List, type RowComponentProps } from 'react-window'
 import './LongListPage.css'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useInfiniteLoader } from 'react-window-infinite-loader'
 
 type LongListItem = {
@@ -14,17 +15,10 @@ type RowProps = {
   items: LongListItem[]
 }
 
-const ITEMS: LongListItem[] = Array.from({ length: 500 }, (_, index) => {
-  const id = index + 1
-
-  return {
-    id,
-    title: `Элемент #${id}`,
-    subtitle: `Тестовая строка для тренировки virtualization и infinite loading.`,
-  }
-})
+const TOTAL = 500
 
 const Row = ({ index, style, items, ariaAttributes }: RowComponentProps<RowProps>) => {
+  const { t } = useTranslation()
   const item = items[index]
 
   return (
@@ -41,8 +35,8 @@ const Row = ({ index, style, items, ariaAttributes }: RowComponentProps<RowProps
         <article className="list-card" aria-busy="true" aria-live="polite">
           <div className="list-card__id">...</div>
           <div className="list-card__body">
-            <h3 className="list-card__title">Загрузка...</h3>
-            <p className="list-card__subtitle">Подгружаем следующий набор элементов.</p>
+            <h3 className="list-card__title">{t('longList.loadingTitle')}</h3>
+            <p className="list-card__subtitle">{t('longList.loadingSubtitle')}</p>
           </div>
         </article>
       )}
@@ -51,11 +45,26 @@ const Row = ({ index, style, items, ariaAttributes }: RowComponentProps<RowProps
 }
 
 function LongListPage() {
-  const allItems = ITEMS
-  const [visibleItems, setVisibleItems] = useState<LongListItem[]>(allItems.slice(0, 100))
-  const [isLoading, setIsLoading] = useState(false)
+  const { t } = useTranslation()
+
+  const allItems = useMemo<LongListItem[]>(
+    () =>
+      Array.from({ length: TOTAL }, (_, index) => {
+        const id = index + 1
+        return {
+          id,
+          title: t('longList.itemTitle', { id }),
+          subtitle: t('longList.itemSubtitle'),
+        }
+      }),
+    [t],
+  )
+
   const chunkSize = 50
-  const loadedCount = visibleItems.length
+  const [loadedCount, setLoadedCount] = useState(100)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const visibleItems = allItems.slice(0, loadedCount)
   const hasNextPage = loadedCount < allItems.length
 
   const isRowLoaded = (index: number) => index < loadedCount
@@ -64,10 +73,7 @@ function LongListPage() {
     if (isLoading || !hasNextPage) return
 
     setIsLoading(true)
-    setVisibleItems(prevItems => {
-      const nextLoadedCount = Math.min(prevItems.length + chunkSize, allItems.length)
-      return [...prevItems, ...allItems.slice(prevItems.length, nextLoadedCount)]
-    })
+    setLoadedCount(prev => Math.min(prev + chunkSize, allItems.length))
     setIsLoading(false)
   }
 
@@ -83,25 +89,22 @@ function LongListPage() {
     <div className="long-list-page">
       <header className="long-list-page__bar">
         <Link className="long-list-page__back" to="/">
-          ← На главную
+          {t('longList.backHome')}
         </Link>
       </header>
 
       <header className="long-list-page__hero" aria-labelledby="long-list-title">
-        <p className="long-list-page__eyebrow">Long List Playground</p>
+        <p className="long-list-page__eyebrow">{t('longList.eyebrow')}</p>
         <h1 id="long-list-title" className="long-list-page__title">
-          Длинный список
+          {t('longList.title')}
         </h1>
-        <p className="long-list-page__lead">
-          Базовая страница для будущих экспериментов с `react-window` и
-          `react-window-infinite-loader`.
-        </p>
+        <p className="long-list-page__lead">{t('longList.lead')}</p>
       </header>
 
-      <section className="long-list-page__panel" aria-label="Список элементов">
+      <section className="long-list-page__panel" aria-label={t('longList.panelAriaLabel')}>
         <div className="long-list-page__panel-head">
-          <h2 className="long-list-page__panel-title">Все элементы</h2>
-          <span className="long-list-page__counter">Всего: {ITEMS.length}</span>
+          <h2 className="long-list-page__panel-title">{t('longList.panelTitle')}</h2>
+          <span className="long-list-page__counter">{t('longList.total', { count: TOTAL })}</span>
         </div>
 
         <List
@@ -114,7 +117,6 @@ function LongListPage() {
             height: 500,
           }}
         />
-
       </section>
     </div>
   )

@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "formik": "^2.4.9",
+    "i18next": "^26.0.8",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-hook-form": "^7.75.0",
+    "react-i18next": "^17.0.6",
     "react-router-dom": "^7.14.2",
     "react-window": "^2.2.7",
     "react-window-infinite-loader": "^2.0.1"

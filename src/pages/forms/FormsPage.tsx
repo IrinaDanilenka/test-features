@@ -1,36 +1,36 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { formExperimentPath } from './formRoutes'
 import './FormsPage.css'
 
 function FormsPage() {
+  const { t } = useTranslation()
+
   return (
     <div className="forms-page">
       <header className="forms-page__bar">
         <Link className="forms-page__back" to="/">
-          ← На главную
+          {t('formsHub.backHome')}
         </Link>
       </header>
 
       <header className="forms-page__hero" aria-labelledby="forms-title">
-        <p className="forms-page__eyebrow">Forms playground</p>
+        <p className="forms-page__eyebrow">{t('formsHub.eyebrow')}</p>
         <h1 id="forms-title" className="forms-page__title">
-          Формы
+          {t('formsHub.title')}
         </h1>
-        <p className="forms-page__lead">
-          Здесь можно сравнить react-hook-form, Formik и подход без библиотеки. Ниже — три зоны под
-          ваши эксперименты.
-        </p>
+        <p className="forms-page__lead">{t('formsHub.lead')}</p>
       </header>
 
-      <main className="forms-page__grid" aria-label="Зоны для форм">
+      <main className="forms-page__grid" aria-label={t('formsHub.gridAriaLabel')}>
         <Link className="forms-slot forms-slot--link" to={formExperimentPath('rhf')} aria-labelledby="slot-rhf">
           <div className="forms-slot__head">
             <span className="forms-slot__badge">1</span>
             <h2 id="slot-rhf" className="forms-slot__title">
-              React Hook Form
+              {t('formsHub.slotRhfTitle')}
             </h2>
           </div>
-          <p className="forms-slot__hint">Место под вашу форму.</p>
+          <p className="forms-slot__hint">{t('formsHub.slotRhfHint')}</p>
           <div className="forms-slot__canvas" aria-hidden="true" />
         </Link>
 
@@ -42,10 +42,10 @@ function FormsPage() {
           <div className="forms-slot__head">
             <span className="forms-slot__badge">2</span>
             <h2 id="slot-formik" className="forms-slot__title">
-              Formik
+              {t('formsHub.slotFormikTitle')}
             </h2>
           </div>
-          <p className="forms-slot__hint">Место под вашу форму.</p>
+          <p className="forms-slot__hint">{t('formsHub.slotFormikHint')}</p>
           <div className="forms-slot__canvas" aria-hidden="true" />
         </Link>
 
@@ -57,10 +57,10 @@ function FormsPage() {
           <div className="forms-slot__head">
             <span className="forms-slot__badge">3</span>
             <h2 id="slot-native" className="forms-slot__title">
-              Без библиотеки
+              {t('formsHub.slotNativeTitle')}
             </h2>
           </div>
-          <p className="forms-slot__hint">Место под контролируемую форму на React.</p>
+          <p className="forms-slot__hint">{t('formsHub.slotNativeHint')}</p>
           <div className="forms-slot__canvas forms-slot__canvas--wide" aria-hidden="true" />
         </Link>
       </main>

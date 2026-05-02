@@ -1,55 +1,15 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import '../../App.css'
 
-type LabEntry = {
-  id: string
-  emoji: string
-  title: string
-  description: string
-  href?: string
-}
-
-const LAB_ENTRIES: LabEntry[] = [
-  {
-    id: 'react-window',
-    emoji: '≣',
-    title: 'react-window + infinite loader',
-    description: 'Виртуализация длинного списка: react-window и react-window-infinite-loader.',
-    href: 'project',
-  },
-  {
-    id: 'forms',
-    emoji: '◇',
-    title: 'Формы: RHF, Formik, без библиотеки',
-    description:
-      'Сравнение подходов: react-hook-form, Formik и контролируемые формы на чистом React.',
-    href: '/project/forms',
-  },
-  {
-    id: 'data',
-    emoji: '◎',
-    title: 'Данные и состояние',
-    description: 'Запросы, кэш, optimistic UI — сюда можно вынести работу с API.',
-  },
-  {
-    id: 'a11y',
-    emoji: '⌘',
-    title: 'Доступность',
-    description: 'Фокус, aria, клавиатура — отдельная песочница под a11y.',
-  },
-  {
-    id: 'layout',
-    emoji: '▦',
-    title: 'Вёрстка и сетки',
-    description: 'Flex, grid, container queries — пробуйте раскладки в изоляции.',
-  },
-  {
-    id: 'misc',
-    emoji: '⁂',
-    title: 'Прочее',
-    description: 'Свободная карточка под любую идею или библиотеку.',
-  },
-]
+const LAB_CARDS = [
+  { id: 'react-window', emoji: '≣' },
+  { id: 'forms', emoji: '◇' },
+  { id: 'data', emoji: '◎' },
+  { id: 'a11y', emoji: '⌘' },
+  { id: 'layout', emoji: '▦' },
+  { id: 'misc', emoji: '⁂' },
+] as const
 
 function ArrowIcon() {
   return (
@@ -66,6 +26,8 @@ function ArrowIcon() {
 }
 
 function MainPage() {
+  const { t } = useTranslation()
+
   return (
     <div className="app">
       <div className="app__bg" aria-hidden="true" />
@@ -77,57 +39,56 @@ function MainPage() {
               L
             </span>
             <div className="app__title-block">
-              <p className="app__title">Лаборатория фич</p>
-              <p className="app__subtitle-small">Тренировка техник и новых библиотек</p>
+              <p className="app__title">{t('main.title')}</p>
+              <p className="app__subtitle-small">{t('main.subtitle')}</p>
             </div>
           </a>
+          <span className="app__badge">{t('main.badge')}</span>
         </div>
       </header>
 
       <main className="app__main">
         <section className="hero" aria-labelledby="hero-heading">
-          <p className="hero__eyebrow">Главная</p>
+          <p className="hero__eyebrow">{t('main.heroEyebrow')}</p>
           <h1 id="hero-heading" className="hero__heading">
-            Выберите раздел и реализуйте технику на отдельной странице
+            {t('main.heroHeading')}
           </h1>
           <Link className="hero__about-button" to="/about">
-            About проекта
+            {t('main.aboutButton')}
           </Link>
         </section>
 
         <section className="section" aria-labelledby="lab-heading">
           <div className="section__head">
             <h2 id="lab-heading" className="section__title">
-              Разделы
+              {t('main.sectionsTitle')}
             </h2>
           </div>
 
-          <nav aria-label="Разделы лаборатории">
+          <nav aria-label={t('main.navAriaLabel')}>
             <ul className="lab-grid">
-              {LAB_ENTRIES.map(entry => {
-                return (
-                  <li key={entry.id}>
-                    <Link className="lab-card" to={`/project/${entry.id}`} data-lab={entry.id}>
-                      <span className="lab-card__icon" aria-hidden="true">
-                        {entry.emoji}
-                      </span>
-                      <h3 className="lab-card__name">{entry.title}</h3>
-                      <p className="lab-card__desc">{entry.description}</p>
-                      <span className="lab-card__arrow">
-                        Открыть
-                        <ArrowIcon />
-                      </span>
-                    </Link>
-                  </li>
-                )
-              })}
+              {LAB_CARDS.map(entry => (
+                <li key={entry.id}>
+                  <Link className="lab-card" to={`/project/${entry.id}`} data-lab={entry.id}>
+                    <span className="lab-card__icon" aria-hidden="true">
+                      {entry.emoji}
+                    </span>
+                    <h3 className="lab-card__name">{t(`main.lab.${entry.id}.title`)}</h3>
+                    <p className="lab-card__desc">{t(`main.lab.${entry.id}.description`)}</p>
+                    <span className="lab-card__arrow">
+                      {t('common.open')}
+                      <ArrowIcon />
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </section>
       </main>
 
       <footer className="app__footer">
-        <p className="app__footer-inner">danilenkairina@gmail.com</p>
+        <p className="app__footer-inner">{t('common.footerContact')}</p>
       </footer>
     </div>
   )

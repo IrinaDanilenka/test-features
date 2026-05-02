@@ -1,75 +1,77 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import './FormsNativePage.css'
-import { useState } from 'react';
+import { useState } from 'react'
 
 function FormsNativePage() {
-  const [name, setName] = useState('');
-  const [nameError, setNameError] = useState('');
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [acceptPrivacy, setAcceptPrivacy] = useState(false);
+  const { t } = useTranslation()
+  const [name, setName] = useState('')
+  const [nameError, setNameError] = useState('')
+  const [email, setEmail] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [acceptPrivacy, setAcceptPrivacy] = useState(false)
 
   const handleChangeName = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    const text = ev.target.value;
+    const text = ev.target.value
 
     if (text.length > 10) {
-      setNameError('Name must be less than 10 characters');
+      setNameError(t('forms.native.nameTooLong'))
     } else {
-      setNameError('');
+      setNameError('')
     }
 
-    setName(text);
+    setName(text)
   }
 
   const handleChangeEmail = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    const email = ev.target.value;
+    const nextEmail = ev.target.value
 
-    if (!email.includes('@')) {
-      setEmailError('Email must be a valid email address');
+    if (!nextEmail.includes('@')) {
+      setEmailError(t('forms.native.emailInvalid'))
     } else {
-      setEmailError('');
+      setEmailError('')
     }
 
-    setEmail(ev.target.value);
+    setEmail(nextEmail)
   }
 
   const handleChangeAcceptPrivacy = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    setAcceptPrivacy(ev.target.checked);
+    setAcceptPrivacy(ev.target.checked)
   }
 
   const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
-    ev.preventDefault();
+    ev.preventDefault()
 
-    console.log('Form submitted');
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Accept Privacy:', acceptPrivacy);
+    console.log('Form submitted')
+    console.log('Name:', name)
+    console.log('Email:', email)
+    console.log('Accept Privacy:', acceptPrivacy)
   }
 
   return (
     <div className="forms-native">
       <header className="forms-native__bar">
         <Link className="forms-native__back" to="/project/forms">
-          ← К списку форм
+          {t('common.backToForms')}
         </Link>
       </header>
 
       <main className="forms-native__main">
-        <p className="forms-native__eyebrow">Эксперимент</p>
-        <h1 className="forms-native__title">Без библиотеки</h1>
+        <p className="forms-native__eyebrow">{t('formsPage.experiment')}</p>
+        <h1 className="forms-native__title">{t('formsPage.nativeTitle')}</h1>
 
         <form className="forms-native__form" onSubmit={handleSubmit}>
           <div className="forms-native__field">
             <label className="forms-native__label" htmlFor="name">
-              Name
+              {t('forms.labels.name')}
             </label>
-            <input className="forms-native__input" type="text" id="name" name="name" value={name} onChange={handleChangeName}/>
+            <input className="forms-native__input" type="text" id="name" name="name" value={name} onChange={handleChangeName} />
             {nameError && <p className="forms-native__error">{nameError}</p>}
           </div>
 
           <div className="forms-native__field">
             <label className="forms-native__label" htmlFor="email">
-              Email
+              {t('forms.labels.email')}
             </label>
             <input
               className="forms-native__input"
@@ -84,13 +86,20 @@ function FormsNativePage() {
 
           <div className="forms-native__checks">
             <label className="forms-native__check">
-              <input className="forms-native__checkbox" type="checkbox" id="acceptPrivacy" name="acceptPrivacy" checked={acceptPrivacy} onChange={handleChangeAcceptPrivacy} />
-              <span className="forms-native__check-text">Accept Privacy</span>
+              <input
+                className="forms-native__checkbox"
+                type="checkbox"
+                id="acceptPrivacy"
+                name="acceptPrivacy"
+                checked={acceptPrivacy}
+                onChange={handleChangeAcceptPrivacy}
+              />
+              <span className="forms-native__check-text">{t('forms.labels.acceptPrivacy')}</span>
             </label>
           </div>
 
           <button className="forms-native__submit" type="submit" disabled={Boolean(nameError) || Boolean(emailError)}>
-            Submit
+            {t('forms.submit')}
           </button>
         </form>
       </main>

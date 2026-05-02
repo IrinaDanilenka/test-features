@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import './FormsRhfPage.css'
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 
 interface IInputForm {
-  name: string;
-  email: string;
-  acceptPrivacy: boolean;
+  name: string
+  email: string
+  acceptPrivacy: boolean
 }
 
 function FormsRhfPage() {
+  const { t } = useTranslation()
   const { register, handleSubmit, formState: { errors } } = useForm<IInputForm>({
     defaultValues: {
       name: 'John Doe',
@@ -19,27 +21,24 @@ function FormsRhfPage() {
 
   const onSubmit = (data: IInputForm) => {
     console.log('Form submitted', data)
-    // console.log('Name:', name);
-    // console.log('Email:', email);
-    // console.log('Accept Privacy:', acceptPrivacy);
   }
 
   return (
     <div className="forms-rhf">
       <header className="forms-rhf__bar">
         <Link className="forms-rhf__back" to="/project/forms">
-          ← К списку форм
+          {t('common.backToForms')}
         </Link>
       </header>
 
       <main className="forms-rhf__main">
-        <p className="forms-rhf__eyebrow">Эксперимент</p>
-        <h1 className="forms-rhf__title">React Hook Form</h1>
-  
+        <p className="forms-rhf__eyebrow">{t('formsPage.experiment')}</p>
+        <h1 className="forms-rhf__title">{t('formsPage.rhfTitle')}</h1>
+
         <form className="forms-rhf__form" onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className="forms-rhf__field">
             <label className="forms-rhf__label" htmlFor="name">
-              Name
+              {t('forms.labels.name')}
             </label>
             <input
               className="forms-rhf__input"
@@ -47,9 +46,9 @@ function FormsRhfPage() {
               id="name"
               aria-invalid={errors.name ? true : undefined}
               {...register('name', {
-                required: 'Укажите имя',
-                minLength: { value: 3, message: 'Минимум 3 символа' },
-                maxLength: { value: 10, message: 'Максимум 10 символов' },
+                required: t('forms.validation.nameRequired'),
+                minLength: { value: 3, message: t('forms.validation.nameMin') },
+                maxLength: { value: 10, message: t('forms.validation.nameMax') },
               })}
             />
             {errors.name && (
@@ -61,14 +60,20 @@ function FormsRhfPage() {
 
           <div className="forms-rhf__field">
             <label className="forms-rhf__label" htmlFor="email">
-              Email
+              {t('forms.labels.email')}
             </label>
             <input
               className="forms-rhf__input"
               type="email"
               id="email"
               aria-invalid={errors.email ? true : undefined}
-              {...register('email', { required: 'Email is required', pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Email is invalid' } })}
+              {...register('email', {
+                required: t('forms.validation.emailRequired'),
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: t('forms.validation.emailInvalid'),
+                },
+              })}
               autoComplete="email"
             />
             {errors.email && <p className="forms-rhf__error" role="alert">{errors.email.message}</p>}
@@ -82,12 +87,12 @@ function FormsRhfPage() {
                 id="acceptPrivacy"
                 {...register('acceptPrivacy')}
               />
-              <span className="forms-rhf__check-text">Accept Privacy</span>
+              <span className="forms-rhf__check-text">{t('forms.labels.acceptPrivacy')}</span>
             </label>
           </div>
 
           <button className="forms-rhf__submit" type="submit">
-            Submit
+            {t('forms.submit')}
           </button>
         </form>
       </main>

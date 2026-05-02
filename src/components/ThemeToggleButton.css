@@ -1,8 +1,4 @@
 .theme-toggle {
-  position: fixed;
-  top: clamp(0.75rem, 3vw, 1.25rem);
-  right: clamp(0.75rem, 3vw, 1.25rem);
-  z-index: 50;
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;

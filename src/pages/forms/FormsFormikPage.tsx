@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import './FormsFormikPage.css'
 
@@ -8,42 +10,47 @@ type FormikFormValues = {
   acceptPrivacy: boolean
 }
 
-function validate(values: FormikFormValues) {
-  const errors: Partial<Record<keyof FormikFormValues, string>> = {}
-
-  if (!values.name.trim()) {
-    errors.name = 'Укажите имя'
-  } else if (values.name.trim().length < 3) {
-    errors.name = 'Минимум 3 символа'
-  } else if (values.name.trim().length > 10) {
-    errors.name = 'Максимум 10 символов'
-  }
-
-  if (!values.email.trim()) {
-    errors.email = 'Укажите email'
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
-    errors.email = 'Некорректный email'
-  }
-
-  if (!values.acceptPrivacy) {
-    errors.acceptPrivacy = 'Нужно принять политику конфиденциальности'
-  }
-
-  return errors
-}
-
 function FormsFormikPage() {
+  const { t } = useTranslation()
+
+  const validate = useCallback(
+    (values: FormikFormValues) => {
+      const errors: Partial<Record<keyof FormikFormValues, string>> = {}
+
+      if (!values.name.trim()) {
+        errors.name = t('forms.validation.nameRequired')
+      } else if (values.name.trim().length < 3) {
+        errors.name = t('forms.validation.nameMin')
+      } else if (values.name.trim().length > 10) {
+        errors.name = t('forms.validation.nameMax')
+      }
+
+      if (!values.email.trim()) {
+        errors.email = t('forms.validation.emailRequired')
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
+        errors.email = t('forms.validation.emailInvalid')
+      }
+
+      if (!values.acceptPrivacy) {
+        errors.acceptPrivacy = t('forms.validation.privacyRequired')
+      }
+
+      return errors
+    },
+    [t],
+  )
+
   return (
     <div className="forms-formik">
       <header className="forms-formik__bar">
         <Link className="forms-formik__back" to="/project/forms">
-          ← К списку форм
+          {t('common.backToForms')}
         </Link>
       </header>
 
       <main className="forms-formik__main">
-        <p className="forms-formik__eyebrow">Эксперимент</p>
-        <h1 className="forms-formik__title">Formik</h1>
+        <p className="forms-formik__eyebrow">{t('formsPage.experiment')}</p>
+        <h1 className="forms-formik__title">{t('formsPage.formikTitle')}</h1>
 
         <Formik<FormikFormValues>
           initialValues={{
@@ -63,7 +70,7 @@ function FormsFormikPage() {
             <Form className="forms-formik__form" noValidate>
               <div className="forms-formik__field">
                 <label className="forms-formik__label" htmlFor="formik-name">
-                  Name
+                  {t('forms.labels.name')}
                 </label>
                 <Field
                   id="formik-name"
@@ -88,7 +95,7 @@ function FormsFormikPage() {
 
               <div className="forms-formik__field">
                 <label className="forms-formik__label" htmlFor="formik-email">
-                  Email
+                  {t('forms.labels.email')}
                 </label>
                 <Field
                   id="formik-email"
@@ -120,7 +127,7 @@ function FormsFormikPage() {
                     className="forms-formik__checkbox"
                     aria-invalid={errors.acceptPrivacy && touched.acceptPrivacy ? true : undefined}
                   />
-                  <span className="forms-formik__check-text">Accept Privacy</span>
+                  <span className="forms-formik__check-text">{t('forms.labels.acceptPrivacy')}</span>
                 </label>
                 <ErrorMessage name="acceptPrivacy">
                   {msg => (
@@ -132,7 +139,7 @@ function FormsFormikPage() {
               </div>
 
               <button className="forms-formik__submit" type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Отправка…' : 'Submit'}
+                {isSubmitting ? t('forms.submitting') : t('forms.submit')}
               </button>
             </Form>
           )}

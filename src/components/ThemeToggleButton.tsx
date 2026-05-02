@@ -1,17 +1,19 @@
 import { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import './ThemeToggleButton.css'
 import { ThemeContext } from '../contexts/theme-context'
 
 /** Тема в DOM задаётся через `ThemeProvider` (`html[data-theme]`); стили — в `index.css`. */
 export function ThemeToggleButton() {
+  const { t } = useTranslation()
   const { theme, toggleTheme } = useContext(ThemeContext)
 
   return (
     <button
       type="button"
       className="theme-toggle"
-      aria-label="Переключить тему оформления"
-      title="Светлая или тёмная тема"
+      aria-label={t('theme.toggleAria')}
+      title={t('theme.toggleTitle')}
       aria-pressed={theme === 'dark'}
       onClick={() => toggleTheme()}
     >
@@ -41,8 +43,8 @@ export function ThemeToggleButton() {
       </span>
 
       <span className="theme-toggle__label" aria-hidden="true">
-        <span className="theme-toggle__mode theme-toggle__mode--light">Светлая</span>
-        <span className="theme-toggle__mode theme-toggle__mode--dark">Тёмная</span>
+        <span className="theme-toggle__mode theme-toggle__mode--light">{t('theme.light')}</span>
+        <span className="theme-toggle__mode theme-toggle__mode--dark">{t('theme.dark')}</span>
       </span>
     </button>
   )

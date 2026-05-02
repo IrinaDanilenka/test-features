@@ -1,0 +1,266 @@
+{
+  "en": {
+    "translation": {
+      "meta": {
+        "title": "Feature Lab"
+      },
+      "language": {
+        "label": "Interface language",
+        "ru": "Russian",
+        "en": "English"
+      },
+      "theme": {
+        "toggleAria": "Toggle color theme",
+        "toggleTitle": "Light or dark theme",
+        "light": "Light",
+        "dark": "Dark"
+      },
+      "common": {
+        "backHome": "← Back to home",
+        "backToForms": "← Back to forms list",
+        "open": "Open",
+        "footerContact": "danilenkairina@gmail.com"
+      },
+      "main": {
+        "badge": "Learning",
+        "title": "Feature Lab",
+        "subtitle": "Practice techniques and new libraries",
+        "heroEyebrow": "Home",
+        "heroHeading": "Pick a section and implement the technique on its own page",
+        "aboutButton": "About the project",
+        "sectionsTitle": "Sections",
+        "navAriaLabel": "Lab sections",
+        "lab": {
+          "react-window": {
+            "title": "react-window + infinite loader",
+            "description": "Long list virtualization: react-window and react-window-infinite-loader."
+          },
+          "forms": {
+            "title": "Forms: RHF, Formik, no library",
+            "description": "Compare react-hook-form, Formik, and controlled forms in plain React."
+          },
+          "data": {
+            "title": "Data & state",
+            "description": "Requests, cache, optimistic UI — a place for API experiments."
+          },
+          "a11y": {
+            "title": "Accessibility",
+            "description": "Focus, aria, keyboard — a dedicated a11y sandbox."
+          },
+          "layout": {
+            "title": "Layout & grids",
+            "description": "Flex, grid, container queries — try layouts in isolation."
+          },
+          "misc": {
+            "title": "Misc",
+            "description": "A free card for any idea or library."
+          }
+        }
+      },
+      "about": {
+        "eyebrow": "About project",
+        "title": "Feature Tests Laboratory",
+        "lead": "This project is a personal sandbox for learning new approaches, libraries, and architectural techniques in React. Each feature lives on its own page so you can compare solutions and build muscle memory.",
+        "mainAriaLabel": "About the project",
+        "goalTitle": "Project goal",
+        "goalText": "Grow taste and engineering skills through small, clear experiments: from layout and animation to performance and data handling.",
+        "processTitle": "How we work",
+        "processItem1": "One page — one technique or library.",
+        "processItem2": "Experiments stay independent from each other.",
+        "processItem3": "After a spike you can capture takeaways and leave a working sample.",
+        "trainTitle": "What you can practice",
+        "trainText": "Virtualization (`react-window`), infinite loading, state and caching, forms, accessibility, animation, component patterns — anything you want to try for real."
+      },
+      "notFound": {
+        "title": "Page not found",
+        "text": "The link may be outdated or mistyped. Go back home and try again.",
+        "backHome": "Back to home"
+      },
+      "longList": {
+        "backHome": "← Back to home",
+        "eyebrow": "Long List Playground",
+        "title": "Long list",
+        "lead": "A starter page for experiments with `react-window` and `react-window-infinite-loader`.",
+        "panelAriaLabel": "Item list",
+        "panelTitle": "All items",
+        "total": "Total: {{count}}",
+        "loadingTitle": "Loading…",
+        "loadingSubtitle": "Fetching the next batch of items.",
+        "itemTitle": "Item #{{id}}",
+        "itemSubtitle": "Sample row for practicing virtualization and infinite loading."
+      },
+      "formsHub": {
+        "backHome": "← Back to home",
+        "eyebrow": "Forms playground",
+        "title": "Forms",
+        "lead": "Compare react-hook-form, Formik, and a no-library approach. Below are three areas for your experiments.",
+        "gridAriaLabel": "Form experiment areas",
+        "slotRhfTitle": "React Hook Form",
+        "slotRhfHint": "Space for your form.",
+        "slotFormikTitle": "Formik",
+        "slotFormikHint": "Space for your form.",
+        "slotNativeTitle": "No library",
+        "slotNativeHint": "Space for a controlled React form."
+      },
+      "formsPage": {
+        "experiment": "Experiment",
+        "rhfTitle": "React Hook Form",
+        "formikTitle": "Formik",
+        "nativeTitle": "No library"
+      },
+      "forms": {
+        "labels": {
+          "name": "Name",
+          "email": "Email",
+          "acceptPrivacy": "Accept privacy policy"
+        },
+        "submit": "Submit",
+        "submitting": "Sending…",
+        "validation": {
+          "nameRequired": "Enter a name",
+          "nameMin": "At least 3 characters",
+          "nameMax": "At most 10 characters",
+          "emailRequired": "Email is required",
+          "emailInvalid": "Invalid email",
+          "privacyRequired": "You must accept the privacy policy"
+        },
+        "native": {
+          "nameTooLong": "Name must be at most 10 characters",
+          "emailInvalid": "Enter a valid email address"
+        }
+      }
+    }
+  },
+  "ru": {
+    "translation": {
+      "meta": {
+        "title": "Лаборатория фич"
+      },
+      "language": {
+        "label": "Язык интерфейса",
+        "ru": "Русский",
+        "en": "English"
+      },
+      "theme": {
+        "toggleAria": "Переключить тему оформления",
+        "toggleTitle": "Светлая или тёмная тема",
+        "light": "Светлая",
+        "dark": "Тёмная"
+      },
+      "common": {
+        "backHome": "← На главную",
+        "backToForms": "← К списку форм",
+        "open": "Открыть",
+        "footerContact": "danilenkairina@gmail.com"
+      },
+      "main": {
+        "badge": "Обучение",
+        "title": "Лаборатория фич",
+        "subtitle": "Тренировка техник и новых библиотек",
+        "heroEyebrow": "Главная",
+        "heroHeading": "Выберите раздел и реализуйте технику на отдельной странице",
+        "aboutButton": "About проекта",
+        "sectionsTitle": "Разделы",
+        "navAriaLabel": "Разделы лаборатории",
+        "lab": {
+          "react-window": {
+            "title": "react-window + infinite loader",
+            "description": "Виртуализация длинного списка: react-window и react-window-infinite-loader."
+          },
+          "forms": {
+            "title": "Формы: RHF, Formik, без библиотеки",
+            "description": "Сравнение подходов: react-hook-form, Formik и контролируемые формы на чистом React."
+          },
+          "data": {
+            "title": "Данные и состояние",
+            "description": "Запросы, кэш, optimistic UI — сюда можно вынести работу с API."
+          },
+          "a11y": {
+            "title": "Доступность",
+            "description": "Фокус, aria, клавиатура — отдельная песочница под a11y."
+          },
+          "layout": {
+            "title": "Вёрстка и сетки",
+            "description": "Flex, grid, container queries — пробуйте раскладки в изоляции."
+          },
+          "misc": {
+            "title": "Прочее",
+            "description": "Свободная карточка под любую идею или библиотеку."
+          }
+        }
+      },
+      "about": {
+        "eyebrow": "About project",
+        "title": "Feature Tests Laboratory",
+        "lead": "Этот проект создан как личная песочница для изучения новых подходов, библиотек и архитектурных техник в React. Каждая фича реализуется изолированно на отдельной странице, чтобы удобно сравнивать решения и накапливать практику.",
+        "mainAriaLabel": "Информация о проекте",
+        "goalTitle": "Цель проекта",
+        "goalText": "Развивать насмотренность и инженерные навыки через маленькие, понятные эксперименты: от вёрстки и анимаций до оптимизации производительности и работы с данными.",
+        "processTitle": "Как устроена работа",
+        "processItem1": "Одна страница — одна техника или библиотека.",
+        "processItem2": "Эксперименты делаются независимо друг от друга.",
+        "processItem3": "После теста можно зафиксировать выводы и оставить рабочий пример.",
+        "trainTitle": "Что можно тренировать",
+        "trainText": "Virtualization (`react-window`), infinite loading, состояние и кеширование, формы, доступность, анимации, паттерны компонентного дизайна и любые другие идеи, которые хочется проверить на практике."
+      },
+      "notFound": {
+        "title": "Страница не найдена",
+        "text": "Возможно, ссылка устарела или была введена с ошибкой. Вернитесь на главную и попробуйте снова.",
+        "backHome": "На главную"
+      },
+      "longList": {
+        "backHome": "← На главную",
+        "eyebrow": "Long List Playground",
+        "title": "Длинный список",
+        "lead": "Базовая страница для будущих экспериментов с `react-window` и `react-window-infinite-loader`.",
+        "panelAriaLabel": "Список элементов",
+        "panelTitle": "Все элементы",
+        "total": "Всего: {{count}}",
+        "loadingTitle": "Загрузка...",
+        "loadingSubtitle": "Подгружаем следующий набор элементов.",
+        "itemTitle": "Элемент #{{id}}",
+        "itemSubtitle": "Тестовая строка для тренировки virtualization и infinite loading."
+      },
+      "formsHub": {
+        "backHome": "← На главную",
+        "eyebrow": "Forms playground",
+        "title": "Формы",
+        "lead": "Здесь можно сравнить react-hook-form, Formik и подход без библиотеки. Ниже — три зоны под ваши эксперименты.",
+        "gridAriaLabel": "Зоны для форм",
+        "slotRhfTitle": "React Hook Form",
+        "slotRhfHint": "Место под вашу форму.",
+        "slotFormikTitle": "Formik",
+        "slotFormikHint": "Место под вашу форму.",
+        "slotNativeTitle": "Без библиотеки",
+        "slotNativeHint": "Место под контролируемую форму на React."
+      },
+      "formsPage": {
+        "experiment": "Эксперимент",
+        "rhfTitle": "React Hook Form",
+        "formikTitle": "Formik",
+        "nativeTitle": "Без библиотеки"
+      },
+      "forms": {
+        "labels": {
+          "name": "Имя",
+          "email": "Email",
+          "acceptPrivacy": "Принять политику конфиденциальности"
+        },
+        "submit": "Отправить",
+        "submitting": "Отправка…",
+        "validation": {
+          "nameRequired": "Укажите имя",
+          "nameMin": "Минимум 3 символа",
+          "nameMax": "Максимум 10 символов",
+          "emailRequired": "Укажите email",
+          "emailInvalid": "Некорректный email",
+          "privacyRequired": "Нужно принять политику конфиденциальности"
+        },
+        "native": {
+          "nameTooLong": "Не более 10 символов",
+          "emailInvalid": "Введите корректный email"
+        }
+      }
+    }
+  }
+}

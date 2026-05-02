@@ -1,4 +1,8 @@
+import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import './App.css'
+import { useTranslation } from 'react-i18next'
+import { LanguageSwitcher } from './components/LanguageSwitcher'
 import { ThemeToggleButton } from './components/ThemeToggleButton'
 import MainPage from './pages/main/MainPage'
 import LongListPage from './pages/long-list/LongListPage'
@@ -11,10 +15,20 @@ import FormsNativePage from './pages/forms/FormsNativePage'
 import { ThemeProvider } from './contexts/ThemeProvider'
 
 function App() {
+  const { t, i18n } = useTranslation()
+
+  useEffect(() => {
+    document.title = t('meta.title')
+    document.documentElement.lang = i18n.language.startsWith('en') ? 'en' : 'ru'
+  }, [t, i18n.language])
+
   return (
     <>
       <ThemeProvider>
-        <ThemeToggleButton />
+        <div className="app-chrome">
+          <LanguageSwitcher />
+          <ThemeToggleButton />
+        </div>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/project/react-window" element={<LongListPage />} />
