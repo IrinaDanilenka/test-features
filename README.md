@@ -1,73 +1,143 @@
-# React + TypeScript + Vite
+# feature-tests
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Личная **лаборатория** на React: здесь удобно по отдельности пробовать библиотеки, паттерны форм, виртуализацию списков и вёрстку, не смешивая всё в одном экране. Каждый крупный эксперимент живёт на **своей странице** и своём маршруте.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Зачем этот проект
 
-## React Compiler
+- **Изолировать** технику: одна страница — один фокус (например, только Formik или только `react-window`).
+- **Сравнивать** подходы рядом: три отдельные страницы форм (RHF, Formik, нативный React) с похожей вёрсткой.
+- **Копить практику**: длинные списки, валидация, роутинг, структура папок `pages/` — как в небольшом учебном приложении.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Описание замысла также есть на странице **About** (`/about`).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Что уже реализовано
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Главная (`/`)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Лэндинг со списком **карточек-разделов**. Часть карточек ведёт на готовые страницы, часть — **заготовки под будущие темы** (пока без отдельных роутов).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Карточка | Что внутри |
+| -------- | ----------- |
+| **react-window + infinite loader** | Ссылка на страницу с длинным списком (см. ниже). |
+| **Формы: RHF, Formik, без библиотеки** | Переход на хаб `/project/forms`, откуда открываются три подстраницы. |
+| **Данные и состояние**, **Доступность**, **Вёрстка и сетки**, **Прочее** | Идеи для следующих экспериментов (API, a11y, layout и т.д.) — маршруты можно добавить по мере необходимости. |
+
+Дополнительно на главной: кнопка перехода на **About**, контакт в подвале.
+
+### About (`/about`)
+
+Текстовая страница о цели лаборатории и формате работы (одна фича — одна страница).
+
+### Длинный список (`/project/react-window`)
+
+Страница для тренировки **виртуализации** и **подгрузки порциями**:
+
+- источник данных — большой массив элементов (например, сотни строк);
+- рендер через **react-window** v2 (`List`, `rowComponent`, `rowProps`);
+- дозагрузка чанков через **`useInfiniteLoader`** из `react-window-infinite-loader` (локальный «бесконечный скролл» по уже имеющемуся массиву).
+
+Подходит, чтобы отработать scroll, порог срабатывания (`threshold`), состояние загрузки и отображение строк-плейсхолдеров.
+
+### Формы — хаб (`/project/forms`)
+
+Три карточки-ссылки:
+
+| Путь | Страница |
+| ---- | -------- |
+| `/project/forms/rhf` | **React Hook Form** — `useForm`, `register`, `defaultValues`, правила валидации во втором аргументе `register`, `formState.errors`. |
+| `/project/forms/formik` | **Formik** — `Formik` / `Form` / `Field` / `ErrorMessage`, функция `validate`, `initialValues`, поведение `validateOnBlur` / `validateOnChange`. |
+| `/project/forms/native` | **Без библиотеки** — контролируемые поля на `useState`, своя валидация и сообщения об ошибках. |
+
+У каждого варианта **свои** файлы страницы и CSS-префиксы (`forms-rhf__`, `forms-formik__`, `forms-native__`), чтобы править одну реализацию, не трогая остальные.
+
+Визуально страницы сведены к одному светлому стилю (фон, карточка, поля, ошибки, кнопка отправки).
+
+### Ошибка 404 (`*`)
+
+Любой неизвестный путь открывает **`NotFoundPage`** — заглушка «страница не найдена» и ссылка на главную.
+
+---
+
+## Стек
+
+| Технология | Роль в проекте |
+| ---------- | -------------- |
+| **React 19** + **TypeScript** | UI и типизация |
+| **Vite 8** | Сборка и dev-сервер |
+| **react-router-dom** | Маршруты (`BrowserRouter` в `main.tsx`) |
+| **react-window** v2 | Виртуальный список |
+| **react-window-infinite-loader** | Хук `useInfiniteLoader` для подгрузки при скролле |
+| **react-hook-form** | Страница формы RHF |
+| **Formik** | Страница формы Formik |
+| **ESLint** + **typescript-eslint** | Линтинг |
+
+---
+
+## Скрипты
+
+| Команда | Назначение |
+| ------- | ---------- |
+| `npm run dev` | Режим разработки (HMR) |
+| `npm run build` | `tsc` + production-сборка Vite |
+| `npm run preview` | Просмотр собранного `dist` локально |
+| `npm run lint` | ESLint по проекту |
+
+---
+
+## Маршруты (сводка)
+
+| Путь | Назначение |
+| ---- | ---------- |
+| `/` | Главная |
+| `/about` | О проекте |
+| `/project/react-window` | Длинный список + virtualization / infinite loader |
+| `/project/forms` | Выбор варианта формы |
+| `/project/forms/rhf` | React Hook Form |
+| `/project/forms/formik` | Formik |
+| `/project/forms/native` | Форма на чистом React |
+| `*` | 404 |
+
+---
+
+## Структура каталогов (упрощённо)
+
+```
+src/
+  App.tsx                 — все `<Route>`
+  main.tsx
+  pages/
+    main/                 — главная
+    about/
+    long-list/
+    forms/
+      FormsPage.tsx       — хаб форм
+      FormsRhfPage.*      — RHF
+      FormsFormikPage.*   — Formik
+      FormsNativePage.*   — нативная форма
+      formRoutes.ts       — пути вида /project/forms/rhf …
+    not-found/
+  App.css                 — стили главной (карточки лаборатории)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Запуск локально
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
+
+В терминале Vite покажет URL (часто `http://localhost:5173`).
+
+---
+
+## Возможное развитие
+
+- Тёмная тема (CSS-переменные уже закладывались под расширение).
+- Реализация карточек с главной: данные/API, a11y, отдельные лэйауты.
+- Деплой статики (например, GitHub Pages или Netlify) командой `npm run build` и выкладкой каталога `dist`.
